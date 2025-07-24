@@ -60,7 +60,7 @@ Analyze this content:
 
     try:
         response = openai.ChatCompletion.create(
-            model="chatgpt-4o-latest",
+            model="gpt-4.1-2025-04-14",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt},
@@ -69,7 +69,6 @@ Analyze this content:
         )
 
         raw_text = response["choices"][0]["message"]["content"].strip()
-        print("\n🔍 RAW RESPONSE FROM OPENAI:\n", raw_text[:1000], "\n")  # Safe preview
 
         raw_text = raw_text.strip("`").strip()
         if raw_text.lower().startswith("json"):
