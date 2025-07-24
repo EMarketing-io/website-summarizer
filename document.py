@@ -1,10 +1,10 @@
 from docx import Document
+import io
 import re
 
-
-def json_to_docx(summary_json, output_path):
+def create_docx_in_memory(summary_json, document_title):
     doc = Document()
-    doc.add_heading(summary_json.get("title", "Summary"), level=0)
+    doc.add_heading(document_title, level=0)
 
     for section in summary_json.get("sections", []):
         doc.add_heading(section["heading"], level=1)
@@ -23,5 +23,9 @@ def json_to_docx(summary_json, output_path):
                         run.text = part
             else:
                 doc.add_paragraph(line.strip())
-    doc.save(output_path)
-    print(f"Document saved locally: {output_path}")
+    
+    doc_stream = io.BytesIO()
+    doc.save(doc_stream)
+    doc_stream.seek(0)
+    
+    return doc_stream
