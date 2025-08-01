@@ -1,9 +1,18 @@
+# OpenAI API
 openai
+
+# Web scraping
 requests
 beautifulsoup4
+
+# Word document generation
 python-docx
+
+# Google Drive API
 google-api-python-client
 google-auth
 google-auth-oauthlib
 google-auth-httplib2
+
+# Environment variables
 python-dotenv
